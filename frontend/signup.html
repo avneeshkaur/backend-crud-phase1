@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Signup</title>
+</head>
+<body>
+  <h2>Signup</h2>
+
+  <input id="firstName" placeholder="First Name"><br><br>
+  <input id="lastName" placeholder="Last Name"><br><br>
+  <input id="email" placeholder="Email"><br><br>
+  <input id="phone" placeholder="Phone"><br><br>
+  <input id="password" type="password" placeholder="Password"><br><br>
+
+  <button onclick="signup()">Signup</button>
+
+  <p>Already have account?
+    <a href="login.html">Login</a>
+  </p>
+
+  <script>
+    async function signup() {
+      await fetch("http://localhost:5000/api/auth/signup", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          firstName: firstName.value,
+          lastName: lastName.value,
+          email: email.value,
+          phone: phone.value,
+          password: password.value
+        })
+      });
+
+      alert("Signup successful");
+      window.location = "login.html";
+    }
+  </script>
+</body>
+</html>

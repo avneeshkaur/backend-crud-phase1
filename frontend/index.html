@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Employee CRUD</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f6f8;
+      padding: 40px;
+    }
+
+    h2 {
+      margin-bottom: 15px;
+    }
+
+    .card {
+      background: #fff;
+      padding: 20px;
+      margin-bottom: 30px;
+      border-radius: 6px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      max-width: 800px;
+    }
+
+    .top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 800px;
+      margin-bottom: 20px;
+    }
+
+    .logout-btn {
+      background: #dc3545;
+      color: #fff;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      margin-bottom: 15px;
+    }
+
+    input {
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    button {
+      padding: 8px 12px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .save-btn {
+      background: #007bff;
+      color: #fff;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    li {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px;
+      border-bottom: 1px solid #eee;
+    }
+
+    .actions button {
+      margin-left: 5px;
+      background: #e0e0e0;
+    }
+
+    .actions .delete {
+      background: #dc3545;
+      color: #fff;
+    }
+
+    .actions .edit {
+      background: #ffc107;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- 🔐 AUTH CHECK -->
+  <script>
+    if (!localStorage.getItem("token")) {
+      window.location = "login.html";
+    }
+  </script>
+
+  <!-- TOP BAR -->
+  <div class="top-bar">
+    <h2>Employee Dashboard</h2>
+    <button class="logout-btn" onclick="logout()">Logout</button>
+  </div>
+
+  <!-- ADD / UPDATE -->
+  <div class="card">
+    <h2>Add / Update Employee</h2>
+
+    <input type="hidden" id="empId" />
+
+    <div class="form-row">
+      <input id="name" placeholder="Name" />
+      <input id="email" placeholder="Email" />
+      <input id="phone" placeholder="Phone" />
+      <input id="department" placeholder="Department" />
+    </div>
+
+    <button class="save-btn" onclick="saveEmployee()">Save</button>
+  </div>
+
+  <!-- LIST -->
+  <div class="card">
+    <h2>Employee List</h2>
+    <ul id="employeeList"></ul>
+  </div>
+
+  <!-- LOGOUT -->
+  <script>
+    function logout() {
+      localStorage.removeItem("token");
+      window.location = "login.html";
+    }
+  </script>
+
+  <script src="script.js"></script>
+</body>
+</html>
